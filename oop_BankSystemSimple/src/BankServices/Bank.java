@@ -80,12 +80,7 @@ public class Bank {
 	}
 	
 	public double getTotalDeposit() {
-		double total = 0;
-		for (int i = 0; i < accounts.size(); i++) {
-			Account acc = (Account) accounts.get(i);
-			total += acc.getBalance();
-		}
-		return total;
+		return 0.0;
 	}
 	
 	public MyList getAccounts() {
@@ -116,13 +111,6 @@ public class Bank {
 	}
 	
 	public long getNumberHigher(double min) {
-		long count = 0;
-		for (int i = 0; i < accounts.size(); i++) {
-			Account acc = (Account) accounts.get(i);
-			if (acc.getBalance() < min) {
-				count++;
-			}
-		}
-		return count;
+		return 0;
 	}
 }
