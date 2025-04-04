@@ -6,7 +6,6 @@ import library.list.MyList;
 
 public class Bank {
 	private String name;
-	private String ownerName;
 	private MyList accounts = new MyArrayList();
 	private int lastAccountCode = 0;
 
@@ -22,6 +21,8 @@ public class Bank {
 		lastAccountCode++;
 		Account acc = new Account(lastAccountCode, ownerName, date, initial);
 		accounts.add(acc);
+		System.out.println("Created: " + acc);
+		System.out.println("Accounts size: " + accounts.size());
 		return lastAccountCode;
 	}
 	

@@ -1,44 +1,59 @@
 package BankServices;
 
+import library.list.MyArrayList;
 import library.list.MyList;
 
-import java.util.List;
-
-
 public class Account {
+	private int code;
 	private String owner;
 	private double balance;
 	private int lastDate;
-	List<String> movements;
+	private MyList movements = new MyArrayList();
 
-	public Account(int lastAccountCode, String ownerName, int date, double initial) {
+	public Account(int code, String ownerName, int date, double initial) {
+		this.code = code;
+		this.owner = ownerName;
+		this.lastDate = date;
+		this.balance = 0;
+		deposit(date, initial);
 	}
 
 	public String toString() {
-		return null;
+		return code + "," + owner + "," + lastDate + "," + balance;
 	}
-		
+
 	public MyList getMovements() {
-		return null;
+		return movements;
 	}
-	
+
 	public MyList getDeposits() {
-		return null;
+		MyList deposits = new MyArrayList();
+		for (int i = 0; i < movements.size(); i++) {
+			Object o = movements.get(i);
+			if (o instanceof Deposit) {
+				deposits.add(o);
+			}
+		}
+		return deposits;
 	}
 
 	public MyList getWithdrawals() {
-		return null;
+		MyList withdrawals = new MyArrayList();
+		for (int i = 0; i < movements.size(); i++) {
+			Object o = movements.get(i);
+			if (o instanceof Withdrawal) {
+				withdrawals.add(o);
+			}
+		}
+		return withdrawals;
 	}
 
 	public int getCode() {
-		return 0;
+		return code;
 	}
 
 	public double getBalance() {
 		return balance;
-	}
-
-	public void withdraw(int date, double balance) {
 	}
 
 	public int getLastOperationDate() {
@@ -46,5 +61,14 @@ public class Account {
 	}
 
 	public void deposit(int date, double value) {
+		lastDate = date;
+		balance += value;
+		movements.add(new Deposit(date, value));
+	}
+
+	public void withdraw(int date, double value) {
+		lastDate = date;
+		balance -= value;
+		movements.add(new Withdrawal(date, value));
 	}
 }

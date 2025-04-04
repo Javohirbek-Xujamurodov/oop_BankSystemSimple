@@ -1,9 +1,19 @@
 package BankServices;
 
-public class Operation {
+public abstract class Operation {
+	private int date;
+	private double value;
 
-	@Override
-	public String toString() {
-		return super.toString();
+	public Operation(int date, double value) {
+		this.date = date;
+		this.value = value;
+	}
+
+	public int getDate() {
+		return date;
+	}
+
+	public double getValue() {
+		return value;
 	}
 }
